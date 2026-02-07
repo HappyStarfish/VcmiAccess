@@ -38,8 +38,9 @@ UTF8
 *.tmp
 *.bak
 
-# === Alte/obsolete Ordner ===
+# === Alte/obsolete Ordner und Temp ===
 VCMI_Portable/
+_zip_temp/
 alt/
 
 # === Runtime-Artefakte in VcmiAccess ===
