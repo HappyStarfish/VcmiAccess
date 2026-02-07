@@ -1,0 +1,61 @@
+# === Sensible/persoenliche Dateien ===
+# Claude AI Anweisungen (enthaelt lokale Pfade und persoenliche Workflows)
+CLAUDE.md
+.claude/
+
+# Projektstatus und interne Doku
+project_status.md
+Menu-Accessibility-Checkliste.txt
+docs/
+
+# === Build-Skripte mit hardcodierten lokalen Pfaden ===
+scripts/
+Build-und-Exportieren.bat
+Portable-Exportieren.bat
+
+# === Hilfsskripte (lokale Werkzeuge mit persoenlichen Pfaden) ===
+*.ps1
+*.py
+
+# === MelonLoader-Templates (nicht VCMI-relevant) ===
+templates/
+
+# === Grosse Dateien und Archive ===
+*.zip
+*.tgz
+*.tar.gz
+*.7z
+*.rar
+
+# === Quellcode-Baum (riesig, hat eigenes Repo) ===
+vcmi-source/
+
+# === Temporaere und sonstige lokale Dateien ===
+temp_hex.txt
+missing_strings.json
+nul
+UTF8
+*.tmp
+*.bak
+
+# === Alte/obsolete Ordner ===
+VCMI_Portable/
+alt/
+
+# === Runtime-Artefakte in VcmiAccess ===
+VcmiAccess/accessibility_log.txt
+VcmiAccess/screenreader_log.txt
+VcmiAccess/*.dmp
+VcmiAccess/*.pdb
+VcmiAccess/*.log
+
+# === Allgemeine Muster ===
+*.pyc
+__pycache__/
+.vs/
+.vscode/
+*.suo
+*.user
+Thumbs.db
+Desktop.ini
+.DS_Store
