@@ -1,9 +1,10 @@
 # VcmiAccess - VCMI Accessibility Edition
 
 VCMI is an open-source reimplementation of the Heroes of Might and Magic 3 engine.
-This version includes accessibility extensions that make the game fully usable with screen readers (NVDA, JAWS).
+This version includes accessibility extensions that strive to make the game fully usable with screen readers.
+We are blind ourselves and passionate about gaming. Claude Code did all the coding as we don't have any coding experience. However, we've been designing and testing everything thoroughly and will continue to do so until everything is fully functional. Our goal is to show the world that making mainstream games fully playable for the blind is possible by showcasing an example. There are many similar projects out there, some of them in a far more professionally polished state than what we could hope to achieve. But we're still happy to be part of this movement.
 
-For help, support, and bug reports, please refer to the [Audiogames.net forum](https://forum.audiogames.net).
+For further accessible gaming projects, help, support, and bug reports, please refer to the [Audiogames.net forum](https://forum.audiogames.net).
 
 ## Setup
 
@@ -14,6 +15,7 @@ For help, support, and bug reports, please refer to the [Audiogames.net forum](h
 
 ## Features
 
+(Note: This is still a beta version. Most things work but please don't set your expectations too high just yet. We'll keep working on it, so please let us know about any bugs you stumble upon, either here or in the Audiogames forum.)
 - Full screen reader support via Tolk (NVDA/JAWS)
 - Keyboard navigation for all menus and dialogs
 - Exploration mode (F2) for accessible map navigation
@@ -236,40 +238,3 @@ Equipment Navigation (when activated):
 ### Save/Load Dialogs
 
 Press Tab to jump to the file list. Files are organized in folders - press Right to open a folder, navigate with arrows, and select with Enter. Then Tab again to the Start button.
-
-## License
-
-This project is licensed under the **GNU General Public License v2.0** (GPL-2.0).
-See [LICENSE.md](LICENSE.md) for the full license text.
-
-The VCMI engine source code is available at: https://github.com/vcmi/vcmi
-
-## Accessibility Source Files
-
-The accessibility extensions are implemented in these source files (in the VCMI client):
-
-- `client/accessibility/ScreenReader.cpp/.h` - Tolk-based screen reader output
-- `client/accessibility/FocusManager.cpp/.h` - Keyboard navigation system
-- `client/accessibility/AccessibilityStrings.cpp/.h` - Localized announcement strings
-- `client/accessibility/ExplorationMode.cpp/.h` - Map exploration mode
-- `client/accessibility/IFocusable.h` - Interface for focusable UI elements
-
-Additional changes were made to:
-
-- `client/widgets/Buttons.cpp` - Button accessibility
-- `client/PlayerLocalState.cpp` - Player state announcements
-- `client/adventureMap/CResDataBar.cpp` - Resource display
-- `client/CPlayerInterface.cpp` - Main interface events
-- `client/battle/BattleConsole.cpp` - Battle messages
-- `client/windows/InfoWindows.cpp` - Info dialogs
-- `client/widgets/TextControls.cpp` - Text widget accessibility
-
-## Third-Party Libraries
-
-This package includes:
-
-- [Tolk](https://github.com/ndarilek/tolk) - Screen reader abstraction library
-- Qt5 - GUI framework (LGPL)
-- SDL2 - Multimedia library (zlib license)
-- Boost - C++ libraries (Boost Software License)
-- FFmpeg - Audio/video codecs (LGPL)
