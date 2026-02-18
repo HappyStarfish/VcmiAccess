@@ -29,6 +29,7 @@ templates/
 
 # === Quellcode-Baum (riesig, hat eigenes Repo) ===
 vcmi-source/
+vcmi-1.7.2/
 
 # === Temporaere und sonstige lokale Dateien ===
 temp_hex.txt
@@ -42,6 +43,7 @@ UTF8
 VCMI_Portable/
 _zip_temp/
 alt/
+VcmiAccess-V0.2.1/
 
 # === Runtime-Artefakte in VcmiAccess ===
 VcmiAccess/accessibility_log.txt
