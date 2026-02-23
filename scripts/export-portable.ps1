@@ -92,11 +92,15 @@ Write-Host "VcmiAccess-Ordner: $sizeRounded MB" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "Erstelle Release-ZIP..." -ForegroundColor Yellow
 
+# Datumssuffix fuer den Ordner in der ZIP (MM-DD)
+$DateSuffix = (Get-Date).ToString("MM-dd")
+$ZipFolderName = "VcmiAccess-$DateSuffix"
+
 # Alte ZIP loeschen
 Remove-Item -Path $ZipFile -Force -ErrorAction SilentlyContinue
 
 # Temp-Ordner fuer ZIP-Struktur
-$TempZipDir = "$ProjectRoot\_zip_temp\VcmiAccess-$Version"
+$TempZipDir = "$ProjectRoot\_zip_temp\$ZipFolderName"
 if (Test-Path "$ProjectRoot\_zip_temp") {
     Remove-Item -Recurse -Force "$ProjectRoot\_zip_temp"
 }
@@ -107,12 +111,12 @@ Copy-Item -Path "$ProjectRoot\README.md" -Destination $TempZipDir
 Copy-Item -Path "$ProjectRoot\LICENSE.md" -Destination $TempZipDir
 
 # Mod-Dateien in Unterordner VcmiAccess
-Copy-Item -Recurse -Path $PortableDir -Destination "$TempZipDir\VcmiAccess-$Version"
+Copy-Item -Recurse -Path $PortableDir -Destination "$TempZipDir\$ZipFolderName"
 
 # ZIP erstellen (schnelle .NET-Methode statt Compress-Archive)
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 [System.IO.Compression.ZipFile]::CreateFromDirectory(
-    "$ProjectRoot\_zip_temp\VcmiAccess-$Version",
+    "$ProjectRoot\_zip_temp\$ZipFolderName",
     $ZipFile,
     [System.IO.Compression.CompressionLevel]::Optimal,
     $true
@@ -127,10 +131,10 @@ $zipSizeRounded = [math]::Round($zipSize, 1)
 Write-Host "ZIP erstellt: VcmiAccess.zip ($zipSizeRounded MB)" -ForegroundColor Green
 Write-Host ""
 Write-Host "ZIP-Struktur:" -ForegroundColor White
-Write-Host "  VcmiAccess-$Version/"
+Write-Host "  $ZipFolderName/"
 Write-Host "    README.md"
 Write-Host "    LICENSE.md"
-Write-Host "    VcmiAccess-$Version/"
+Write-Host "    $ZipFolderName/"
 Write-Host "      VCMI_client.exe, DLLs, config/, Mods/ ..."
 Write-Host ""
 Write-Host "Hinweis: Auf dem Zielgeraet werden Heroes-3-Spieldaten benoetigt!" -ForegroundColor Yellow
