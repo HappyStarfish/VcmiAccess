@@ -24,6 +24,9 @@
 #include "../widgets/Images.h"
 #include "../widgets/TextControls.h"
 #include "../widgets/VideoWidget.h"
+#include "../accessibility/FocusManager.h"
+#include "../accessibility/ScreenReader.h"
+#include "../accessibility/AccessibilityStrings.h"
 
 #include "../../lib/CStack.h"
 #include "../../lib/CPlayerState.h"
@@ -48,6 +51,7 @@ BattleResultWindow::BattleResultWindow(const BattleResult & br, CPlayerInterface
 
 	exit = std::make_shared<CButton>(Point(384, 505), AnimationPath::builtin("iok6432.def"), std::make_pair("", ""), [this](){ bExitf();}, EShortcut::GLOBAL_ACCEPT);
 	exit->setBorderColor(Colors::METALLIC_GOLD);
+	exit->addHoverText(EButtonState::NORMAL, "OK");
 
 	auto battle = owner.cb->getBattle(br.battleID);
 	const auto * attackerPlayer = GAME->server().client->gameInfo().getPlayerState(battle->sideToPlayer(BattleSide::ATTACKER));
@@ -60,6 +64,7 @@ BattleResultWindow::BattleResultWindow(const BattleResult & br, CPlayerInterface
 	{
 		repeat = std::make_shared<CButton>(Point(24, 505), AnimationPath::builtin("icn6432.def"), std::make_pair("", ""), [this](){ bRepeatf();}, EShortcut::GLOBAL_CANCEL);
 		repeat->setBorderColor(Colors::METALLIC_GOLD);
+		repeat->addHoverText(EButtonState::NORMAL, AccessibilityStrings::get("battle_retry"));
 		labels.push_back(std::make_shared<CLabel>(232, 520, FONT_MEDIUM, ETextAlignment::CENTER, Colors::WHITE, LIBRARY->generaltexth->translate("vcmi.battleResultsWindow.applyResultsLabel")));
 	}
 
@@ -155,6 +160,14 @@ BattleResultWindow::BattleResultWindow(const BattleResult & br, CPlayerInterface
 	videoPlayer = std::make_shared<VideoWidget>(Point(107, 70), resources.prologueVideo, resources.loopedVideo, false);
 
 	ENGINE->music().playMusic(resources.musicName, false, true);
+
+	// Accessibility: Setup focus manager for keyboard navigation
+	focusManager = std::make_shared<FocusManager>();
+	// Add FocusManager as child so it receives activate() and keyboard events
+	addChild(focusManager.get());
+	if(repeat)
+		focusManager->registerElement(repeat.get());
+	focusManager->registerElement(exit.get());
 }
 
 BattleResultResources BattleResultWindow::getResources(const BattleResult & br)
@@ -246,6 +259,19 @@ void BattleResultWindow::activate()
 {
 	owner.showingDialog->setBusy();
 	CIntObject::activate();
+
+	// Accessibility: Announce battle result
+	std::string announcement = AccessibilityStrings::get("battle_result");
+	if(description)
+		announcement += description->label->getText();
+
+	if(repeat)
+		announcement += AccessibilityStrings::get("battle_result_enter_escape");
+	else
+		announcement += AccessibilityStrings::get("battle_result_continue");
+
+	// Queue after battle result announcement so nothing gets interrupted
+	ScreenReader::getInstance().speakQueued(announcement);
 }
 
 void BattleResultWindow::buttonPressed(int button)
