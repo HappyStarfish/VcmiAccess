@@ -474,6 +474,13 @@
 		},
 
 		{
+			"name": "buttonAccept",
+			"type": "button",
+			"position": {"x": 240, "y": 535},
+			"image": "MuBchck"
+		},
+
+		{
 			"type": "labelGroup",
 			"font": "small",
 			"alignment": "left",

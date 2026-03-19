@@ -307,6 +307,13 @@
 			"color": "yellow",
 			"text": "vcmi.optionsTab.simturnsAI.hover",
 			"position": {"x": 110, "y": 538}
+		},
+
+		{
+			"name": "buttonAccept",
+			"type": "button",
+			"position": {"x": 240, "y": 535},
+			"image": "MuBchck"
 		}
 	],
 	
