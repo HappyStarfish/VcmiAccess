@@ -4,11 +4,11 @@
 # und erstellt eine Release-ZIP
 
 # === Versionsnummer hier anpassen ===
-$Version = "V0.3.2"
+$Version = "V0.3.5"
 
 $ProjectRoot = "C:\Users\Sonja\Documents\Modprojekte\VCMI"
-$BuildOutput = "$ProjectRoot\vcmi-1.7.2\build\bin\RelWithDebInfo"
-$SourceRoot = "$ProjectRoot\vcmi-1.7.2"
+$BuildOutput = "$ProjectRoot\vcmi-1.7.3\build\bin\RelWithDebInfo"
+$SourceRoot = "$ProjectRoot\vcmi-1.7.3"
 $PortableDir = "$ProjectRoot\VcmiAccess-$Version"
 $ZipFile = "$ProjectRoot\VcmiAccess.zip"
 

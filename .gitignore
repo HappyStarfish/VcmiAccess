@@ -30,6 +30,9 @@ templates/
 # === Quellcode-Baum (riesig, hat eigenes Repo) ===
 vcmi-source/
 vcmi-1.7.2/
+vcmi-1.7.3/
+
+distribution/
 
 # === Temporaere und sonstige lokale Dateien ===
 temp_hex.txt

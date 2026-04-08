@@ -49,17 +49,17 @@ foreach ($repo in $repos) {
     # Basis-Infos
     $vis = if ($repo.isPrivate) { "Privat" } else { "Oeffentlich" }
     $desc = if ($repo.description) { $repo.description } else { "(keine Beschreibung)" }
-    Write-Host "Beschreibung: $desc"
-    Write-Host "Sichtbarkeit: $vis"
+#    Write-Host "Beschreibung: $desc"
+#    Write-Host "Sichtbarkeit: $vis"
     Write-Host "Sterne: $($repo.stargazerCount)"
     Write-Host "Forks: $($repo.forkCount)"
-    Write-Host "Zuletzt aktualisiert: $($repo.updatedAt.Substring(0,10))"
+#    Write-Host "Zuletzt aktualisiert: $($repo.updatedAt.Substring(0,10))"
 
     # Traffic / Zugriffe (letzte 14 Tage)
     Write-SubSection "Zugriffe (letzte 14 Tage)"
     try {
         $views = gh api "repos/$owner/$name/traffic/views" 2>$null | ConvertFrom-Json
-        Write-Host "Seitenaufrufe gesamt: $($views.count)"
+#        Write-Host "Seitenaufrufe gesamt: $($views.count)"
         Write-Host "Eindeutige Besucher: $($views.uniques)"
     } catch {
         Write-Host "(Keine Traffic-Daten verfuegbar)"
@@ -74,15 +74,15 @@ foreach ($repo in $repos) {
     }
 
     # Referrer (woher kommen Besucher)
-    try {
-        $referrers = gh api "repos/$owner/$name/traffic/popular/referrers" 2>$null | ConvertFrom-Json
-        if ($referrers -and $referrers.Count -gt 0) {
-            Write-SubSection "Top-Referrer (woher kommen Besucher)"
-            foreach ($ref in $referrers) {
-                Write-Host "- $($ref.referrer): $($ref.count) Aufrufe, $($ref.uniques) eindeutig"
-            }
-        }
-    } catch {}
+#    try {
+#        $referrers = gh api "repos/$owner/$name/traffic/popular/referrers" 2>$null | ConvertFrom-Json
+#        if ($referrers -and $referrers.Count -gt 0) {
+#            Write-SubSection "Top-Referrer (woher kommen Besucher)"
+#            foreach ($ref in $referrers) {
+##                Write-Host "- $($ref.referrer): $($ref.count) Aufrufe, $($ref.uniques) eindeutig"
+#            }
+#        }
+#    } catch {}
 
     # Beliebte Inhalte
     try {
