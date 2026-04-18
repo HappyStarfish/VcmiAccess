@@ -20,6 +20,9 @@ Portable-Exportieren.bat
 # === MelonLoader-Templates (nicht VCMI-relevant) ===
 templates/
 
+# === Externe Abhaengigkeiten (Tolk, NVDA DLLs) ===
+deps/
+
 # === Grosse Dateien und Archive ===
 *.zip
 *.tgz
@@ -47,6 +50,8 @@ VCMI_Portable/
 _zip_temp/
 alt/
 VcmiAccess-V0.2.1/
+VcmiAccess-V0.3.5/
+VcmiAccess-V0.3.6/
 
 # === Runtime-Artefakte in VcmiAccess ===
 VcmiAccess/accessibility_log.txt

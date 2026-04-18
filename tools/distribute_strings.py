@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+import sys
+import io
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 """
 Distribute accessibility strings to all language JSON files.
 
@@ -34,7 +37,7 @@ def main():
     # Find the config directory
     script_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(script_dir)
-    config_dir = os.path.join(project_root, "vcmi-1.7.2", "config", "accessibility")
+    config_dir = os.path.join(project_root, "vcmi-1.7.3", "config", "accessibility")
 
     if not os.path.isdir(config_dir):
         # Try relative to script location
